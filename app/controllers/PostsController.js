@@ -15,6 +15,19 @@ class PostsController extends Controller {
         super(Post)
     }
 
+    // OVERWRITE METHOD
+    // findById(req, res, next) {
+    //     console.log("req.params.id", req.params.id)
+    //     // Get all documents and filter with queries string (req.query : ex. http://domain.ext/api/?query=string)
+    //     Post.findById(req.params.id, (err, document) => {
+    //         console.log("document.published", document.published)
+    //         // IF NOT PUBLISHED
+    //         if (document.published === false)
+    //             next(err)
+    //         else
+    //             res.json(document)
+    //     })
+    // }
 }
 
 module.exports = PostsController

@@ -8,19 +8,15 @@ let navbar = {
         //Initiate the Timer object.
         $scope.Timer = null;
 
-        //Timer start function.
-     //    $scope.StartTimer = function() {
-            //Set the Timer start message.
-            $scope.Message = moment().format('MMM Do YYYY HH:mm:ss');
+        $scope.Message = moment().format('MMM Do YYYY HH:mm:ss');
 
-            //Initialize the Timer to run every 1000 milliseconds i.e. one second.
-            $scope.Timer = $interval(function() {
-                //Display the current time.
-                var time = $filter('date')(moment().format('MMM Do YYYY HH:mm:ss'));
-                $scope.Message = time;
-            }, 1000);
-     //    };
-     //    $scope.StartTimer();
+        //Initialize the Timer to run every 1000 milliseconds i.e. one second.
+        $scope.Timer = $interval(function() {
+            //Display the current time.
+            var time = $filter('date')(moment().format('MMM Do YYYY HH:mm:ss'));
+            $scope.Message = time;
+        }, 1000);
+
 
         angular.extend(this, {
             $onInit() {

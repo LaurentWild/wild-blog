@@ -34,16 +34,34 @@ export default ['$stateProvider', '$urlRouterProvider', '$locationProvider', ($s
         })
         .state('algo1', {
             url: '/algo1',
-            template: 'Pas pu le mettre ailleurs que dans la console pour l\'instant ',
-            controller: ['$stateParams', '$state', function($stateParams, $state) {
+            // template: 'Pas pu le mettre ailleurs que dans la console pour l\'instant ',
+            templateUrl: 'js/components/algo/algo1.html',
+            controller: ['$stateParams', '$state', '$scope', function($stateParams, $state, $scope) {
                 let contacts = ["Ryan", "Kieran", "Mark"];
-                    let friendsTab = [];
-                    contacts.forEach(function(element) {
-                        if (element.length === 4) {
-                            friendsTab.push(element);
-                        }
-                    });
-                    console.log(friendsTab);
+                let friendsTab = [];
+                contacts.forEach(function(element) {
+                    if (element.length === 4) {
+                        friendsTab.push(element);
+                    }
+                });
+                $scope.friendsTab = friendsTab;
+            }]
+        })
+        .state('algo2', {
+            url: '/algo2',
+            // template: 'Pas pu le mettre ailleurs que dans la console pour l\'instant ',
+            templateUrl: 'js/components/algo/algo2.html',
+            controller: ['$stateParams', '$state', '$scope', function($stateParams, $state, $scope) {
+                let distance = 14928418679754190000;
+                let paper = 0.0001;
+                let doneDistance = paper;
+                let foldNbr = 0;
+                while (paper < distance) {
+                    paper = paper * 2;
+                    console.log(paper)
+                    foldNbr++;
+                }
+                $scope.foldNbr = foldNbr;
             }]
         })
 }]
