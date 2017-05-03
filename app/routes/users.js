@@ -19,6 +19,11 @@ module.exports = (app, authCheck) => {
         console.log("User", req.user)
         return ctrl.findById(req, res, next, req.user)
     })
+//////#################
+    app.get('/users/bookmarked/:id', authCheck, (req, res, next) => {
+        console.log("User", req.user)
+        return ctrl.findBookmarked(req, res, next, req.user)
+    })
 
     app.post('/users', (req, res, next) => {
         return ctrl.create(req, res, next)

@@ -94,6 +94,7 @@ let blogItem = {
         this.addOrRemoveToBookmark = () => {
             // Try to find post in bookmarks
             let postFound = this.user.bookmarks.find((post_id) => post_id === this.post._id)
+            console.log("postFound", postFound)
             if (!postFound) {
                 //Not found
                 this.user.bookmarks.push(this.post._id)

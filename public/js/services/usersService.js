@@ -30,6 +30,12 @@ export default ['$http', '$cookies', '$window', '$q', class UsersService {
         return this.$http.put('/api/users/' + user._id, user)
     }
 
+    // BOOKMARKED
+    getBookmarked(user) {
+        console.log("BOOKMARKED service")
+        return this.$http.get('/api/users/bookmarked/' + user._id)
+    }
+
     connect(data) {
         return new Promise((resolve, reject) => {
             this.$http.post('/api/auth', data).then((res) => {

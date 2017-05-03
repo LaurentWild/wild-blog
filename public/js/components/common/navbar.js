@@ -35,6 +35,19 @@ let navbar = {
             }
 
         })
+
+        this.getBookmarked = () => {
+            console.log("ezerzer")
+            UsersService.getBookmarked(this.user).then(() => {
+                console.log("getBookmarked")
+
+            })
+        }
+
+
+
+
+
     }]
 }
 

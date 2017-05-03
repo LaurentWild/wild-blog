@@ -29,6 +29,28 @@ class UsersController extends Controller {
       }
     }
 
+    // FIND BOOKMARKED POSTS
+    findBookmarked(req, res, next, user) {
+         console.log("req.user", req.user)
+        // Get a unique document by request param, this param need to be id
+        User.find({
+                _id: req.user._id
+            })
+            .populate({
+                path: 'bookmarks'
+            })
+            .exec(function(err, bookmarked) {
+                if (err) {
+                    return res.status(400).send({
+                        message: errorHandler.getErrorMessage(err)
+                    });
+                } else {
+                     console.log("bookmarked", bookmarked)
+                    res.json(bookmarked)
+                }
+            })
+    }
+
     create(req, res, next) {
         this.model.findOne({
             email: req.body.email
