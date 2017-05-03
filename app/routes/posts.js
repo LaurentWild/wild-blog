@@ -11,6 +11,8 @@ module.exports = (app) => {
 
     //GET (for READ)  method
     app.get('/posts', (req, res, next) => {
+        // LIMIT QUERY
+        req.query = {published:true}
         return ctrl.find(req, res, next)
     })
 

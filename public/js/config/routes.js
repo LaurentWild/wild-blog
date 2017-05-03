@@ -11,7 +11,8 @@ export default ['$stateProvider', '$urlRouterProvider', '$locationProvider', ($s
       Define a state with name 'app' this state is abstract and url is empty (root of application)
       template is ui-view it's used to display nested views
     */
-    $stateProvider.state('app', {
+    $stateProvider
+        .state('app', {
             url: '',
             abstract: true,
             template: '<navbar /><div class="container"><ui-view></ui-view></div>'
@@ -29,6 +30,20 @@ export default ['$stateProvider', '$urlRouterProvider', '$locationProvider', ($s
                 } else {
                     $state.go('blog.list')
                 }
+            }]
+        })
+        .state('algo1', {
+            url: '/algo1',
+            template: 'Pas pu le mettre ailleurs que dans la console pour l\'instant ',
+            controller: ['$stateParams', '$state', function($stateParams, $state) {
+                let contacts = ["Ryan", "Kieran", "Mark"];
+                    let friendsTab = [];
+                    contacts.forEach(function(element) {
+                        if (element.length === 4) {
+                            friendsTab.push(element);
+                        }
+                    });
+                    console.log(friendsTab);
             }]
         })
 }]

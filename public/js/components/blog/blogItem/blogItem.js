@@ -33,6 +33,12 @@ let blogItem = {
             } else {
                 // If $stateParams.id is an id we make HTTP request with this id to get data
                 PostsService.getById($stateParams.id).then((res) => {
+                    // TODO => SAME THING BUT EXPRESS SIDE
+                    // CHECK IF PUBLISHED OR NOT
+                    if(res.data.published === false) {
+                        // REDIRECT
+                        window.location.href = '/#!/posts/';
+                    }
                     // when this request receives response we affect response data to this controller variable post
                     this.post = res.data;
                     // save into initialPost a copy of this post (used for undo)
@@ -82,25 +88,25 @@ let blogItem = {
 
         this.isFav = () => {
             if (!this.post) return
-            return (this.user.bookmarks.find((post_id) => post_id.id === this.post._id))
+            return (this.user.bookmarks.find((post_id) => post_id === this.post._id))
         }
 
         this.addOrRemoveToBookmark = () => {
             // Try to find post in bookmarks
-            let postFound = this.user.bookmarks.find((post) => post.id === this.post._id)
-
+            let postFound = this.user.bookmarks.find((post_id) => post_id === this.post._id)
+            console.log(postFound)
             if (!postFound) {
                 //Not found
                 this.user.bookmarks.push(this.post._id)
             } else {
                 //Found
-                this.user.bookmark = this.user.bookmarks.filtered((post_id) => {
+                this.user.bookmarks = this.user.bookmarks.filter((post_id) => {
                     return post_id !== this.post._id
                 })
             }
 
             UsersService.update(this.user).then((res) => {
-                //return UsersService.setToken(res.data.token)
+                return UsersService.setToken(res.data.token)
             }).then((user) => {
                 Materialize.toast((postFound ? 'Removed' : 'Added'), 2000, (postFound ? 'toast-warning' : 'toast-success'))
             }).catch((err) => {
